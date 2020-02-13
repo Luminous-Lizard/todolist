@@ -37,8 +37,11 @@ const item2 = new Item({
 const item3 = new Item({
   name: "<--- Press here to delete item"
 });
+const item4 = new Item({
+  name: "To create new list, enter /'list name' after current adress bar"
+});
 
-let defaultItems = [item1, item2, item3];
+let defaultItems = [item1, item2, item3, item4];
 
 const listSchema = {
   name: String,
@@ -89,8 +92,6 @@ app.post("/", function(req, res) {
       res.redirect("/" + listName);
     });
   }
-
-
 });
 
 app.post("/delete", function(req, res) {
@@ -116,8 +117,6 @@ app.post("/delete", function(req, res) {
         }
       });
   }
-
-
 });
 
 app.get("/:newListName", function(req, res) {
@@ -152,18 +151,6 @@ app.get("/:newListName", function(req, res) {
   });
 
   list.save();
-});
-
-
-// app.get("/work", function(req, res) {
-//   res.render("list", {
-//     listTitle: "Work List",
-//     newListItems: workItems
-//   });
-// });
-//
-app.get("/about", function(req, res) {
-  res.render("about");
 });
 
 let port = process.env.PORT;
